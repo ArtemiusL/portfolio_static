@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import Animated from '_components/Animated';
 import MenuIcon from '_components/Icons/Menu';
 import Button from '_components/Button';
+import PageLoad from '_components/AnimationWrapper/PageLoad';
 
 import styles from './Buttons.scss';
 
@@ -13,11 +14,17 @@ const Buttons = ({
   menuStatus,
 }) => (
   <div styleName="root">
-    <Animated isVisible={menuStatus !== 'hidden'} duration={500} styleName="button">
-      <Button onClick={onTogleMenu} >
-        <MenuIcon status={menuStatus} />
-      </Button>
-    </Animated>
+    <PageLoad
+      delayIn={1000}
+      duration={400}
+      animationIn="fadeInDown"
+    >
+      <Animated isVisible={menuStatus !== 'hidden'} duration={500} styleName="button">
+        <Button onClick={onTogleMenu} >
+          <MenuIcon status={menuStatus} />
+        </Button>
+      </Animated>
+    </PageLoad>
   </div>
 );
 
