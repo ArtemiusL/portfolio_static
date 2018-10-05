@@ -1,0 +1,35 @@
+@import '~styles/mixins';
+@import '~styles/variables';
+@import '~styles/media';
+
+.center {
+  position: absolute;
+  left: 10vw;
+  top: 0;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  z-index: 10000;
+}
+
+.root {
+  z-index: 6;
+  display: flex;
+  transform: translate3d(-50%, 0, 0) rotate(-90deg);
+  transform-origin: center;
+}
+
+.hover {
+  margin: 0 50px;
+  transform: translate3d(0, 50%, 0);
+
+  @include media-mobile {
+    margin: 0 15px;
+  }
+}
+
+.item {
+  font-family: 'Geometria', sans-serif;
+  letter-spacing: 1.22px;
+}

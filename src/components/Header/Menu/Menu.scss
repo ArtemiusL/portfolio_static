@@ -1,0 +1,37 @@
+@import '~styles/variables';
+@import '~styles/mixins';
+@import '~styles/media';
+
+.root {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  max-height: 100vh;
+  z-index: -1;
+  background-color: $color-light-silver;
+}
+
+.flex_wrapper {
+  display: flex;
+}
+
+.question {
+  color: black;
+}
+
+.header {
+  margin-bottom: desktop(30);
+}
+
+.button {
+  text-decoration: underline;
+}
+
+.wrapperParagrafs {
+  @include media-mobile {
+    & > div {
+      display: none;
+    }
+  }
+}

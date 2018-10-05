@@ -1,0 +1,44 @@
+@import '~styles/variables';
+@import '~styles/mixins';
+
+.root {
+  width: calc(100% + #{$border-horizontal * 2});
+  height: 100%;
+  margin-left: -$border-horizontal;
+}
+
+.slider {
+  transform: translate3d(0, 30%, 0);
+  height: 100%;
+  -webkit-overflow-scrolling: touch;
+
+  @include media-tablet {
+    transform: none;
+  }
+}
+
+.separate {
+  flex-shrink: 0;
+  width: desktop(100);
+}
+
+.conpinsation {
+  @include width-column-with-border;
+
+  flex-shrink: 0;
+}
+
+.active {
+  span {
+    color: #000;
+  }
+}
+
+.border {
+  flex-shrink: 0;
+  width: $border-horizontal;
+}
+
+.slideTitle {
+  margin: 0 2%;
+}

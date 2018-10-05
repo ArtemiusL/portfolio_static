@@ -1,0 +1,191 @@
+@import '~styles/variables';
+@import '~styles/media';
+
+@mixin hover {
+  @include media-desktop {
+    &:hover {
+      @content;
+    }
+  }
+
+  @include media-mobile {
+    &:active {
+      @content;
+    }
+  }
+}
+
+@mixin hover-touch {
+  &:active {
+    @content;
+  }
+
+  :global(.noDevice) &:hover {
+    @content;
+  }
+}
+
+@mixin windows {
+  :global(.isWindows) & {
+    @content;
+  }
+}
+
+@mixin orientation-portrait {
+  @media screen and (orientation: portrait) {
+    @content;
+  }
+}
+
+@mixin width-column-with-border($columns: 1) {
+  // (100% - #{$border-horizontal} * 2) -> ширина сетки без внешних отступов
+  // (* $columns / $max-columns) -> взять $columns частей из $max-columns
+  // (+ #{$border-horizontal}) -> добавить ширину отступа
+
+  @include media-desktop {
+    width: calc(((100% - #{$border-horizontal} * 2) * #{$columns} / #{$max-columns}) + #{$border-horizontal});
+  }
+
+  @include media-tablet {
+    width: calc(((100% - #{$border-horizontal} * 2) * #{$columns} / #{$tablet-max-columns}) + #{$border-horizontal});
+  }
+
+  @include media-mobile {
+    width: calc(((100% - #{$mobile-border-horizontal} * 2) * #{$columns} / #{$mobile-max-columns}) + #{$mobile-border-horizontal});
+  }
+}
+
+@mixin width-column($columns: 1) {
+  // (100% - #{$border-horizontal} * 2) -> ширина сетки без внешних отступов
+  // (* $columns / $max-columns) -> взять $columns частей из $max-columns
+
+  @include media-desktop {
+    width: calc((100vw - (#{$border-horizontal} * 2)) * #{$columns} / #{$max-columns});
+  }
+
+  @include media-tablet {
+    width: calc((100vw - (#{$border-horizontal} * 2)) * #{$columns} / #{$tablet-max-columns});
+  }
+
+  @include media-mobile {
+    width: calc((100vw - #{$mobile-border-horizontal} * 2) * #{$columns} / #{$mobile-max-columns});
+  }
+}
+
+@mixin font-desctop($pixels, $line-height: '') {
+  font-size: #{$pixels}px;
+
+  @if $line-height != '' {
+    line-height: #{$line-height}px;
+  }
+
+  @include media-max-desktop {
+    font-size: desktop($pixels);
+
+    @if $line-height != '' {
+      line-height: desktop($line-height);
+    }
+  }
+
+  // @include media-laptop {
+  //   font-size: laptop($pixels);
+
+  //   @if $line-height != '' {
+  //     line-height: laptop($line-height);
+  //   }
+  // }
+}
+
+@mixin font-laptop($pixels, $line-height: '') {
+  @include media-laptop {
+    font-size: laptop($pixels);
+
+    @if $line-height != '' {
+      line-height: laptop($line-height);
+    }
+  }
+}
+
+@mixin font-tablet($pixels, $line-height: '') {
+  @include media-tablet {
+    font-size: tablet($pixels);
+
+    @if $line-height != '' {
+      line-height: tablet($line-height);
+    }
+  }
+}
+
+@mixin font-mobile($pixels, $line-height: '') {
+  @include media-mobile {
+    font-size: mobile($pixels);
+
+    @if $line-height != '' {
+      line-height: mobile($line-height);
+    }
+  }
+}
+
+@function width-column-desktop($columns: 1) {
+  @return calc((100vw - #{$border-horizontal} * 2) * #{$columns} / #{$max-columns});
+}
+
+@function width-column-mobile($columns: 1) {
+  @return calc((100vw - (#{$mobile-border-horizontal} * 2)) * #{$columns} / #{$mobile-max-columns});
+}
+
+@function width-column-tablet($columns: 1) {
+  @return calc((100vw - (#{$tablet-border-horizontal} * 2)) * #{$columns} / #{$tablet-max-columns});
+}
+
+@function half-width-column-desktop($columns: 1) {
+  @return calc(((100vw - #{$border-horizontal} * 2) * #{$columns} / #{$max-columns}) / 2);
+}
+
+@function height-column-desktop($rows: 1) {
+  @return calc((var(--page-height) - #{$border-horizontal} * 2) * #{$rows} / #{$max-rows});
+}
+
+@function height-column-desktop-border($rows: 1) {
+  @return calc(var(--page-height) * #{$rows} / #{$max-rows});
+}
+
+@function desktop($pixels) {
+  @return #{$pixels / (($desktop-width / 100) * $desktop-font-size)}rem;
+}
+
+@function laptop($pixels) {
+  @return #{$pixels / (($laptop-width / 100) * $desktop-font-size)}rem;
+}
+
+@function tablet($pixels) {
+  @return #{$pixels / (($tablet-width / 100) * $tablet-font-size)}rem;
+}
+
+@function mobile($pixels) {
+  @return #{$pixels / (($mobile-width /100) * $mobile-font-size)}rem;
+}
+
+@function to-vh($pixels) {
+  @return #{($pixels * 100) / 1180}vh;
+}
+
+@function to-mobile-vh($pixels) {
+  @return #{($pixels * 100) / 800}vh;
+}
+
+@function to-mobile-vh($pixels) {
+  @return #{($pixels * 100) / 800}vh;
+}
+
+@function height-mobile-grid-row($rows: 1) {
+  @return calc(#{($mobile-grid-row-rem * $rows)}rem);
+}
+
+@function height-tablet-grid-row($rows: 1) {
+  @return calc(#{($tablet-grid-row-rem * $rows)}rem);
+}
+
+@function height-desktop-grid-row($rows: 1) {
+  @return calc(#{($desktop-grid-row-rem * $rows)}rem);
+}

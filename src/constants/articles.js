@@ -1,0 +1,1 @@
+export const LIMIT_FOR_FETCH_MORE_DEFAULT_ARTICLE = 5;

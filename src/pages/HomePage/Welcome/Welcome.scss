@@ -1,0 +1,74 @@
+.root {
+  height: 100vh;
+  width: 100vw;
+  padding-left: 10vw;
+  display: flex;
+  overflow: hidden;
+}
+
+.photo {
+  font-style: normal;
+  flex-shrink: 1;
+  flex-grow: 1;
+
+  img {
+    height: 90%;
+  }
+}
+
+.title {
+  margin-top: 24vh;
+  margin-bottom: 1vh;
+}
+
+.content {
+  box-shadow: -30px -10px 70px 10px rgba(0, 0, 0, 1);
+  position: absolute;
+  right: 10vw;
+  top: 10vh;
+  z-index: 100;
+}
+
+.footerGradient {
+  width: 100%;
+  height: 10%;
+  position: absolute;
+  bottom: 10%;
+  left: 0;
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.1));
+  box-shadow: 0 -20px 50px 10px rgba(0, 0, 0, 0.1);
+}
+
+.social {
+  font-style: normal;
+}
+
+.socialWrapper {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 90;
+  overflow: hidden;
+}
+
+.psevdo_grid {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  grid-template: 1fr / repeat(5, 1fr);
+  justify-content: space-between;
+  padding: 0 10vw;
+  z-index: 50;
+  pointer-events: none;
+
+  div {
+    height: 100%;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    border-left: 0.5px solid rgba(255, 255, 255, 0.2);
+  }
+}

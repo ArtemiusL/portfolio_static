@@ -1,0 +1,17 @@
+@import '~styles/variables';
+@import '~styles/mixins';
+@import '~styles/media';
+
+.root {
+  font-style: normal;
+}
+
+.button {
+  position: absolute;
+  top: 125px;
+  right: 10vw;
+
+  @include media-mobile {
+    top: 60px;
+  }
+}
